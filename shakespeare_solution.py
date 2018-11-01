@@ -86,16 +86,15 @@ class BigramModel():
             return
         for sen in corpus:
             sen = sen.split(" ")
-            for word in sen:
-                comb.append(word)
-        for i in range(len(comb) - 1):
-            key = (comb[i], comb[i+1])
-            if key in self.counts:
-                self.counts[key] += 1
-            else:
-                self.counts[key] = 1
-            self.context[key[0]] += 1
-            self.context[""] += 1
+            for i in range(len(sen) - 1):
+                key = (sen[i], sen[i+1])
+                if key in self.counts:
+                    self.counts[key] += 1
+                else:
+                    self.counts[key] = 1
+                self.context[key[0]] += 1
+                self.context[""] += 1
+
 
     # Returns the probability of a bigram in the distribution
     def prob(self, word1, word2):
